@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/your-repo.git'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -19,7 +25,10 @@ pipeline {
         stage('Push to Docker Registry') {
             steps {
                 script {
-                    dockerImage.push()
+                    docker.withRegistry("http://${REGISTRY}", "credentials-id") {
+                        dockerImage.push()
+                        dockerImage.push("latest")
+                    }
                 }
             }
         }
