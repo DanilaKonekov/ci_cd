@@ -10,6 +10,7 @@ def home():
         "hostname": socket.gethostname()
     })
 
+
 @app.route('/health')
 def health():
     return jsonify({"status": "UP"})
