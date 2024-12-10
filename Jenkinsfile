@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REGISTRY = "localhost:5000"
-        IMAGE_NAME = "myapp"
+        IMAGE_NAME = "konekovdanila/myapp:latest"
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
         stage('Push to Docker Registry') {
             steps {
                 script {
-                    docker.withRegistry("http://${REGISTRY}", "registry") {
+                    docker.withRegistry("http://${REGISTRY}", "docker-registry") {
                         dockerImage.push()
                         dockerImage.push("latest")
                     }
