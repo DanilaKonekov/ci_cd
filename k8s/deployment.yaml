@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: localhost:5000/myapp:latest
+        image: localhost:5000/myapp:<commit-hash или latest>
         ports:
         - containerPort: 5000
         livenessProbe:
